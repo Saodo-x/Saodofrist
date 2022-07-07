@@ -5,6 +5,9 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+  beforeCreate(){
+    Vue.prototype.$bus = this
+  },
   mounted() {
     // var __responsive__ = function () {
     //   var deviceWidth = document.documentElement.clientWidth;
@@ -13,6 +16,8 @@ new Vue({
     //   document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
     // };
     // __responsive__();
+
   },
 
 }).$mount('#app')
+

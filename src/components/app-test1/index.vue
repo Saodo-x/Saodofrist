@@ -1,10 +1,23 @@
 <template>
-  <div id="one">哈哈</div>
+  <div id="one">{{con}}</div>
 </template>
 
 <script>
   export default {
-    name: "AppTest1"
+    name: "AppTest1",
+    data (){
+      return {
+        con: '哈哈',
+      }
+    },
+    mounted() {
+      this.$bus.$on('poem', (data)=>{
+        this.con = data
+      })
+    },
+    beforeDestroy() {
+      this.$bus.$off('poem')
+    }
   }
 </script>
 

@@ -28,7 +28,11 @@
         txt2: '',
         oneTimes: '',
         optval: ['australia','canada','usa'],
+
       }
+    },
+    mounted() {
+      // let
     },
     methods: {
       setTxt (){
@@ -51,12 +55,14 @@
             }
           }
         })
-        document.getElementById('lname').value = await getaa
+        this.txt2 = await getaa
+        sessionStorage.setItem("name", this.txt2);
+        this.$bus.$emit('poem', this.txt2)
         // axios.get('https://api.uixsj.cn/hitokoto/get?type=social').then(response=>{
-        //   console.log(response.data);  // 获取接口数据
+        //   console.log(response.data);
         //
         // }).catch(error=>{
-        //   console.log(error.response);  // 获取错误信息
+        //   console.log(error.response);
         // })
       }
     },
