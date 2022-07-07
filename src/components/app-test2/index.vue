@@ -19,6 +19,7 @@
 </template>
 
 <script>
+  // import axios from 'axios'
   export default {
     name: "AppTest2",
     data (){
@@ -36,15 +37,27 @@
           alert(this.txt1)
         },800)
       },
-      getTxt (){
-        // let xmlhttp = new XMLHttpRequest()
-        // xmlhttp.open('GET','src/assets/text/content1.txt',true)
-        // xmlhttp.send()
-        // xmlhttp.onreadystatechange = function (){
-        //   if (this.readyState === 4 && this.status === 200){
-        //     console.log(this.responseText)
-        //   }
-        // }
+      async getTxt (){
+        let getaa = new Promise(function (resolve, reject){
+          let xmlhttp = new XMLHttpRequest()
+          xmlhttp.open('GET','https://api.uixsj.cn/hitokoto/get?type=social',true)
+          xmlhttp.send()
+          xmlhttp.onload = function (){
+            if (this.status === 200){
+              // console.log(this.responseText)
+              resolve(this.responseText)
+            }else {
+              reject("File not Found")
+            }
+          }
+        })
+        document.getElementById('lname').value = await getaa
+        // axios.get('https://api.uixsj.cn/hitokoto/get?type=social').then(response=>{
+        //   console.log(response.data);  // 获取接口数据
+        //
+        // }).catch(error=>{
+        //   console.log(error.response);  // 获取错误信息
+        // })
       }
     },
   }
