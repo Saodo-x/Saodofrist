@@ -16,6 +16,7 @@
     </form>
     <button @click="getTxt">哈哈哈1</button>
     <button @click="getArray">哈哈哈2</button>
+    <button @click="getImgs">哈哈哈3</button>
   </div>
 </template>
 
@@ -33,9 +34,9 @@
       }
     },
     computed: {
-      optUp: function () {
-        return this.opt.slice(0,1).toUpperCase() + this.opt.slice(1)
-      }
+      // optUp: function () {
+      //   return this.opt.slice(0,1).toUpperCase() + this.opt.slice(1)
+      // }
     },
     methods: {
       setTxt (){
@@ -73,6 +74,11 @@
         this.$store.dispatch('pushArray',this.txt1)
         this.$router.push({
           path: '/app-test3',
+        })
+      },
+      getImgs (){
+        this.$router.push({
+          path: '/app-test3.1',
         })
       }
     },

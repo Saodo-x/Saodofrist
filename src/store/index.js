@@ -9,6 +9,7 @@ const actions = {
         let set = new Set()
         array.forEach((item)=>{set.add(item)})
         let a = Array.from(set)
+        a.sort((a,b)=>{return a-b})
         contxt.commit('PUSHARRAY',a)
         console.log(a)
     }

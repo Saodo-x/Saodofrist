@@ -1,5 +1,5 @@
 <template>
-  <div id="num">{{array1}}</div>
+  <div id="num">{{ array1 }}</div>
 </template>
 
 <script>
