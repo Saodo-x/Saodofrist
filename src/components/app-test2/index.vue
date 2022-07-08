@@ -2,19 +2,20 @@
   <div id="main">
     <form>
       <label for="fname">First Name</label>
-      <input type="text" id="fname" name="firstname" @keydown="setTxt" v-model="txt1" placeholder="Your name..">
+      <input type="text" id="fname" name="firstname" @keydown="setTxt()" v-model="txt1" placeholder="Your name..">
 
       <label for="lname">Last Name</label>
-      <input type="text" id="lname" name="lastname" @keydown="setTxt" v-model="txt2" placeholder="Your last name..">
+      <input type="text" id="lname" name="lastname" @keydown="setTxt()" v-model="txt2" placeholder="Your last name..">
 
       <label for="country">Country</label>
-      <select id="country" name="country">
-        <option value="opt" v-for="(opt,index) in optval" :key="index">{{ opt }}</option>
+      <select id="country" v-model="opt">
+        <option :value="opt" v-for="(opt,index) in optval" :key="index" name="sss">{{ opt }}</option>
       </select>
 
       <input type="submit" value="Submit">
     </form>
-    <button @click="getTxt">哈哈哈</button>
+    <button @click="getTxt">哈哈哈1</button>
+    <button @click="getArray">哈哈哈2</button>
   </div>
 </template>
 
@@ -28,18 +29,21 @@
         txt2: '',
         oneTimes: '',
         optval: ['australia','canada','usa'],
-
+        opt: 'australia',
       }
     },
-    mounted() {
-      // let
+    computed: {
+      optUp: function () {
+        return this.opt.slice(0,1).toUpperCase() + this.opt.slice(1)
+      }
     },
     methods: {
       setTxt (){
-        clearTimeout(this.oneTimes)
-        this.oneTimes = setTimeout(()=>{
-          alert(this.txt1)
-        },800)
+        // clearTimeout(this.oneTimes)
+        // this.oneTimes = setTimeout(()=>{
+        //   alert(this.txt1)
+        //   console.log(this.txt1)
+        // },800)
       },
       async getTxt (){
         let getaa = new Promise(function (resolve, reject){
@@ -64,6 +68,12 @@
         // }).catch(error=>{
         //   console.log(error.response);
         // })
+      },
+      getArray (){
+        this.$store.dispatch('pushArray',this.txt1)
+        this.$router.push({
+          path: '/app-test3',
+        })
       }
     },
   }
@@ -79,7 +89,6 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
 input[type=submit] {
   width: 100%;
   background-color: #4CAF50;
@@ -90,11 +99,9 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
 }
-
 input[type=submit]:hover {
   background-color: #45a049;
 }
-
 div {
   border-radius: 5px;
   background-color: #f2f2f2;
